@@ -19,6 +19,9 @@ jobs:
       - run: |
           #build image
           docker build -t rachel-test .
+          #delete old container
+          #the or true is to prevent the whole thing from crashing if we get an error code exit 1
+          docker rum -f rachel-test-dockercontainer || true
           #Run image
           docker run -d -p 6003:8080 --name rachel-test-dockercontainer rachel-test
           echo "made it to the end"
